@@ -11,7 +11,6 @@ class Dog {
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = Map();
 
-    //FIXME: Try the cookbook method also
     // map['id'] = id;
     map['name'] = name;
     map['age'] = age;
