@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Dog {
 
-  // int id;
+  int id;
   String name;
   int age;
 

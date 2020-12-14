@@ -22,7 +22,7 @@ class DBhelper {
   Future<void> insertDog(Dog dog) async {
     final Database db = await database;
 
-    db.insert('dogs', dog.toMap());
+    await db.insert('dogs', dog.toMap());
 
     // await db.rawInsert('INSERT INTO dogs(name,age) VALUES (${dog.name} , ${dog.age})');
   }
@@ -33,8 +33,7 @@ class DBhelper {
     List<Dog> list = List.generate(
         maps.length,
         (i) => Dog(
-              maps[i]['id'].toString() +
-              maps[i]['name'],
+              maps[i]['id'].toString() + " " + maps[i]['name'],
               maps[i]['age'],
             ));
 
@@ -43,8 +42,12 @@ class DBhelper {
 
   Future<void> deleteDogs(int newId) async {
     final Database db = await database;
-    await db.delete(
-      'dogs',where: "id=?",whereArgs: [newId]
-    );
+    await db.delete('dogs', where: "id=?", whereArgs: [newId]);
+  }
+
+  Future<void> updateDogs(Dog dog) async {
+    final Database db = await database;
+
+    await db.update('dogs', dog.toMap(), where: 'id=?', whereArgs: [dog.id]);
   }
 }
