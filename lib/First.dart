@@ -114,11 +114,13 @@ class _FirstState extends State<First> {
   Future<String> getDogNames() async {
     List<Dog> list = await dBhelper.retrieveDogs();
     List<String> names = List();
+
+    //replaced async with then
     list.forEach((element) {
       names.add(element.name + " " + element.age.toString());
     });
-    var list2 = names.toString();
-    return list2;
+    var tempList = names.toString();
+    return tempList;
   }
 
   void insertDog() {
