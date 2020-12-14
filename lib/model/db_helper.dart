@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'Dog.dart';
-import 'First.dart';
+import '../screens/First.dart';
 
 class DBhelper {
   Future<Database> database;
@@ -49,5 +49,15 @@ class DBhelper {
     final Database db = await database;
 
     await db.update('dogs', dog.toMap(), where: 'id=?', whereArgs: [dog.id]);
+  }
+
+  Future<int> getLength() async{
+    int count;
+    final Database db = await database;
+    debugPrint('###############');
+    debugPrint(db.toString());
+    List<Map<String, dynamic>> maps = await db.query('dogs');
+    count = maps.length;
+    return count;
   }
 }
